@@ -48,6 +48,16 @@
 
 <a class="skip-link" href="#main"><span data-i18n="a11y.skipLink">Skip to content</span></a>
 
+<div class="announce" data-announce-id="ube-2026">
+  <p class="announce__text">
+    🌱 <span data-i18n="announce.text">Ube season might be back — ask what's on the board.</span>
+    <a href="menu.html#matcha"><span data-i18n="announce.link">See the menu</span> <span aria-hidden="true" class="find__arrow">→</span></a>
+  </p>
+  <button type="button" class="announce__close" aria-label="Dismiss">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg>
+  </button>
+</div>
+
 <header>
   <nav class="nav nav--adaptive" aria-label="Main">
     <a class="nav__logo wordmark" href="index.html" aria-label="The Coffee Bar — home">
@@ -367,6 +377,13 @@
           <footer class="review__by"><cite data-i18n="reviews.r3.by">Review highlights</cite> · Google</footer>
         </blockquote>
       </div>
+
+      <div class="review-cta">
+        <a class="btn btn--blush" href="https://search.google.com/local/writereview?placeid=0x3e5f696a040b1a93:0xa934e3b20c97d26d" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.3 1.3-6.6L2.5 9.1l6.6-.8z"/></svg>
+          <span data-i18n="reviews.cta">Leave us a review</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -453,9 +470,19 @@
               <p><span data-i18n="find.alquoz.hours">Mon–Fri 8:30–6 · Sat 9–1:30 ·</span> <b data-i18n="find.alquoz.sunClosed">Sun closed</b></p>
               <p data-i18n="find.alquoz.services">Dine in · Drive-through · Delivery</p>
             </div>
-            <a class="spot__link" href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener">
-              <span data-i18n="find.alquoz.link">Open in Maps</span> <span aria-hidden="true" class="find__arrow">→</span>
-            </a>
+            <div class="spot__actions">
+              <a class="spot__link" href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener">
+                <span data-i18n="find.alquoz.link">Open in Maps</span> <span aria-hidden="true" class="find__arrow">→</span>
+              </a>
+              <a class="platform-link" href="https://deliveroo.ae/menu/Dubai/al-quoz-1/coffee-bar-by-the-goods-collective" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 9h13l2 3v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>
+                  <path d="M4 9l3-5h6l2 5"/>
+                  <circle cx="8" cy="19" r="1.6"/><circle cx="16" cy="19" r="1.6"/>
+                </svg>
+                <span data-i18n="find.alquoz.deliveroo">Order on Deliveroo</span>
+              </a>
+            </div>
           </div>
         </article>
 
@@ -478,9 +505,11 @@
               <p data-i18n="find.marina.services">Walk-in · Takeaway</p>
               <p data-i18n="find.marina.note">Menu varies a little from Al Quoz</p>
             </div>
-            <a class="spot__link" href="https://www.instagram.com/thecoffeebar___/" target="_blank" rel="noopener">
-              <span data-i18n="find.marina.link">See it on Instagram</span> <span aria-hidden="true" class="find__arrow">→</span>
-            </a>
+            <div class="spot__actions">
+              <a class="spot__link" href="https://www.instagram.com/thecoffeebar___/" target="_blank" rel="noopener">
+                <span data-i18n="find.marina.link">See it on Instagram</span> <span aria-hidden="true" class="find__arrow">→</span>
+              </a>
+            </div>
           </div>
         </article>
 
@@ -527,10 +556,12 @@
     <div>
       <h2 class="footer__h" data-i18n="home.footer.sayHello">Say hello</h2>
       <ul class="footer__list">
+        <li><a href="https://wa.me/971526425040" target="_blank" rel="noopener" data-i18n="home.footer.whatsapp">WhatsApp us</a></li>
         <li><a href="tel:+971526425040">+971 52 642 5040</a></li>
         <li><a href="https://www.instagram.com/thecoffeebar___/" target="_blank" rel="noopener">@thecoffeebar___</a></li>
         <li><a href="https://www.thegcco.com/" target="_blank" rel="noopener">thegcco.com</a></li>
         <li><a href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener" data-i18n="menuPage.footer.mapsLink">Al Quoz on Maps</a></li>
+        <li><a href="https://search.google.com/local/writereview?placeid=0x3e5f696a040b1a93:0xa934e3b20c97d26d" target="_blank" rel="noopener" data-i18n="reviews.cta">Leave us a review</a></li>
       </ul>
     </div>
   </div>
@@ -539,6 +570,13 @@
     <span data-i18n="home.footer.bottomNote">Oat, almond, soya, coconut. Always on us.</span>
   </div>
 </footer>
+
+<a class="whatsapp-fab" href="https://wa.me/971526425040?text=Hi!%20I%20have%20a%20question%20about%20The%20Coffee%20Bar" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="whatsapp-fab__ping" aria-hidden="true"></span>
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true">
+    <path d="M16.03 3C9.1 3 3.47 8.63 3.47 15.56c0 2.24.59 4.42 1.7 6.35L3 29l7.27-2.11a12.5 12.5 0 0 0 5.75 1.4h.01c6.93 0 12.56-5.63 12.56-12.56C28.6 8.8 22.97 3 16.03 3zm7.36 17.72c-.31.87-1.53 1.6-2.5 1.8-.68.14-1.55.25-4.52-.97-3.8-1.57-6.24-5.44-6.43-5.7-.19-.26-1.53-2.04-1.53-3.89 0-1.85.94-2.75 1.28-3.13.31-.35.68-.44.9-.44.23 0 .45 0 .65.01.21.01.49-.08.76.58.31.75 1.05 2.6 1.14 2.79.09.19.15.41.03.66-.12.25-.18.4-.36.62-.18.22-.38.49-.54.66-.18.19-.37.39-.16.75.21.37.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.93 1.8.37.19.58.16.8-.09.22-.25.93-1.08 1.18-1.45.25-.37.5-.31.83-.19.34.12 2.18 1.03 2.55 1.21.37.19.62.28.71.44.09.16.09.9-.22 1.77z"/>
+  </svg>
+</a>
 
 <script src="js/i18n.min.js" defer></script>
 <script src="js/main.min.js" defer></script>

@@ -86,6 +86,8 @@
   --font-hand: "Caveat", "Segoe Script", cursive;
 
   --nav-h: 74px;
+  --announce-h: 0px;
+  --topbar-h: calc(var(--nav-h) + var(--announce-h));
   --gutter: clamp(20px, 5vw, 64px);
   --maxw: 1240px;
 
@@ -98,7 +100,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scroll-padding-top: calc(var(--nav-h) + 16px);
+  scroll-padding-top: calc(var(--topbar-h) + 16px);
 }
 
 body {
@@ -159,11 +161,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    ========================================================================== */
 
 .nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  position: fixed; top: var(--announce-h); left: 0; right: 0; z-index: 100;
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--gutter);
   color: var(--paper);
+  transition: top 320ms var(--ease-out);
 }
 .nav::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
@@ -229,7 +232,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 900px) {
   .nav__toggle { display: flex; }
   .nav__links {
-    position: fixed; inset: var(--nav-h) 0 0 0;
+    position: fixed; inset: var(--topbar-h) 0 0 0;
     flex-direction: column; justify-content: center; gap: 8px;
     background: var(--teal-dark);
     transform: translateY(-100%); visibility: hidden;
@@ -240,6 +243,99 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav__links a::after { left: 50%; width: 0; }
   .nav__links .nav__cta { margin-top: 18px; padding: 14px 34px; font-size: 1.1rem; }
 }
+
+/* ==========================================================================
+   Announcement bar — fixed above the nav, height fed back into --announce-h
+   by JS so every consumer of --topbar-h (hero padding, scroll-padding, the
+   menu rail's sticky offset) clears it automatically. Dismissing it collapses
+   that back to 0 rather than leaving a gap.
+   ========================================================================== */
+
+.announce {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 110;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 10px var(--gutter);
+  background: linear-gradient(120deg, var(--blush-deep) 0%, var(--blush-ink) 100%);
+  color: var(--paper);
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(12, 42, 34, 0.18);
+}
+.announce__text { font-size: 0.88rem; font-weight: 600; line-height: 1.4; }
+.announce__text a {
+  text-decoration: underline; text-underline-offset: 3px; font-weight: 800;
+  white-space: nowrap;
+}
+.announce__close {
+  flex: none; width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255, 249, 243, 0.18);
+  transition: background 180ms ease;
+}
+.announce__close:hover { background: rgba(255, 249, 243, 0.3); }
+.announce__close svg { width: 13px; height: 13px; }
+.announce.is-hidden { display: none; }
+
+@media (max-width: 560px) {
+  .announce { padding: 9px 46px 9px var(--gutter); }
+  .announce__close { position: absolute; inset-inline-end: 12px; top: 50%; transform: translateY(-50%); }
+  .announce__text { font-size: 0.82rem; }
+}
+
+/* ==========================================================================
+   WhatsApp click-to-chat — persistent floating button, both pages. Uses
+   inset-inline-end rather than right so it sits on the correct side in RTL
+   without a separate override.
+   ========================================================================== */
+
+.whatsapp-fab {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  inset-inline-end: 20px;
+  z-index: 90;
+  width: 58px; height: 58px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #25D366;
+  box-shadow: 0 10px 24px -8px rgba(18, 90, 51, 0.55), 0 0 0 1px rgba(255,255,255,0.15) inset;
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+}
+.whatsapp-fab:hover { transform: scale(1.07) rotate(-4deg); box-shadow: 0 14px 30px -8px rgba(18, 90, 51, 0.6); }
+.whatsapp-fab svg { width: 30px; height: 30px; }
+.whatsapp-fab__ping {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: #25D366; opacity: 0.55;
+  animation: waPing 2.6s ease-out infinite;
+}
+@keyframes waPing {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@media (max-width: 560px) {
+  .whatsapp-fab { width: 52px; height: 52px; bottom: max(16px, env(safe-area-inset-bottom)); inset-inline-end: 16px; }
+  .whatsapp-fab svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab__ping { display: none; }
+}
+
+/* ==========================================================================
+   Delivery / review action buttons — reused wherever a spot card, the menu
+   footer, or the reviews section needs to hand off to a third-party platform.
+   ========================================================================== */
+
+.spot__actions { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 18px; }
+
+.platform-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 0.92rem; color: var(--teal);
+  border-bottom: 2px solid var(--blush); padding-bottom: 3px;
+  transition: gap 260ms var(--ease-out);
+}
+.platform-link:hover { gap: 14px; }
+.platform-link svg { width: 17px; height: 17px; flex: none; }
+.section--teal .platform-link,
+.spot--marina .platform-link { color: inherit; }
+
+.review-cta { margin-top: 40px; display: flex; justify-content: center; }
 
 /* ==========================================================================
    Language switcher — flag button + dropdown, lives in .nav__right so it's
@@ -379,6 +475,7 @@ html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
 .hero .btn--ghost:hover, .section--teal .btn--ghost:hover { background: var(--paper); color: var(--teal-dark); }
 .section--paper .btn--ghost:hover, .section--wash .btn--ghost:hover,
 .section--blush .btn--ghost:hover { background: var(--teal-dark); color: var(--paper); }
+.menu-foot .btn--ghost:hover { background: var(--paper); color: var(--teal-dark); }
 
 .reveal {
   opacity: 0; transform: translateY(24px);
@@ -439,7 +536,7 @@ html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
 
 .hero {
   position: relative; overflow: hidden; isolation: isolate;
-  padding: calc(var(--nav-h) + clamp(26px, 4vw, 52px)) var(--gutter) clamp(52px, 7vw, 90px);
+  padding: calc(var(--topbar-h) + clamp(26px, 4vw, 52px)) var(--gutter) clamp(52px, 7vw, 90px);
   background:
     radial-gradient(60% 46% at 82% 4%, rgba(250, 214, 213, 0.55), transparent 66%),
     radial-gradient(52% 44% at 4% 92%, rgba(92, 174, 160, 0.26), transparent 70%),
@@ -760,7 +857,7 @@ html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
    ========================================================================== */
 
 .menu-hero {
-  padding: calc(var(--nav-h) + clamp(46px, 7vw, 82px)) var(--gutter) clamp(38px, 5vw, 60px);
+  padding: calc(var(--topbar-h) + clamp(46px, 7vw, 82px)) var(--gutter) clamp(38px, 5vw, 60px);
   background:
     radial-gradient(56% 60% at 84% 6%, rgba(92, 174, 160, 0.34), transparent 68%),
     linear-gradient(160deg, var(--teal-dark) 0%, #0F3B31 100%);
@@ -786,7 +883,7 @@ html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
 @media (max-width: 560px) { .menu-note { border-radius: 18px; } }
 
 .menu-rail {
-  position: sticky; top: var(--nav-h); z-index: 60;
+  position: sticky; top: var(--topbar-h); z-index: 60;
   background: rgba(255, 249, 243, 0.95);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 131, 113, 0.18);

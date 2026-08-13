@@ -21,6 +21,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ---------- Announcement bar ----------
+  // Height feeds back into --announce-h (and, through it, --topbar-h) so the
+  // nav, hero padding, scroll-padding and the menu rail's sticky offset all
+  // clear it automatically — nothing downstream hardcodes a pixel value.
+  const announce = document.querySelector(".announce");
+  if (announce) {
+    const STORE_KEY = "cb-announce-dismissed";
+    const id = announce.dataset.announceId || "default";
+    const root = document.documentElement;
+
+    const measure = () => {
+      const h = announce.classList.contains("is-hidden") ? 0 : announce.offsetHeight;
+      root.style.setProperty("--announce-h", `${h}px`);
+    };
+
+    if (localStorage.getItem(STORE_KEY) === id) {
+      announce.classList.add("is-hidden");
+    } else {
+      let resizeTimer;
+      window.addEventListener(
+        "resize",
+        () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(measure, 150);
+        },
+        { passive: true }
+      );
+    }
+    measure();
+
+    const closeBtn = announce.querySelector(".announce__close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        announce.classList.add("is-hidden");
+        measure();
+        try {
+          localStorage.setItem(STORE_KEY, id);
+        } catch (e) {}
+      });
+    }
+  }
+
   // ---------- Nav ----------
   const nav = document.querySelector(".nav");
   if (nav && !nav.classList.contains("nav--solid")) {

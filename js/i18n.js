@@ -6,6 +6,9 @@
 window.CB_I18N = {
   "a11y.skipLink": "تخطَّ إلى المحتوى",
 
+  "announce.text": "قد يكون موسم الأوبي قد عاد — اسأل عمّا هو متوفر.",
+  "announce.link": "شاهد القائمة",
+
   "coffee.blend1.name": "مزيج لايكيبيا",
   "coffee.blend1.notes": "إثيوبيا والبرازيل. نكهات فواكه وشوكولاتة، بقوام ناعم ولمسة قوية.",
   "coffee.blend2.name": "ليوا أحادي المصدر",
@@ -24,6 +27,7 @@ window.CB_I18N = {
   "find.alquoz.link": "افتح في الخرائط",
   "find.alquoz.name": "فرع المستودع",
   "find.alquoz.services": "تناول في المكان · عبر السيارة · توصيل",
+  "find.alquoz.deliveroo": "اطلب عبر Deliveroo",
   "find.alquoz.sunClosed": "الأحد مغلق",
   "find.alquoz.tag": "القوز",
   "find.eyebrow": "موقعنا",
@@ -52,6 +56,7 @@ window.CB_I18N = {
   "home.footer.explore": "استكشف",
   "home.footer.matchaHojicha": "ماتشا وهوجيتشا",
   "home.footer.sayHello": "تواصل معنا",
+  "home.footer.whatsapp": "راسلنا عبر واتساب",
   "home.footer.tag": "قهوة مختصة وماتشا فاخرة من The Goods Collective & Co. ملكية نسائية، القوز، دبي.",
 
   "hours.closed": "مغلق",
@@ -304,6 +309,7 @@ window.CB_I18N = {
 
   "reviews.eyebrow": "من Google",
   "reviews.h2": "4.6 نجوم، و85 تقييمًا، وموضوع واحد متكرر.",
+  "reviews.cta": "اترك لنا تقييمًا على Google",
   "reviews.localGuide": "دليل محلي",
   "reviews.r1.text": "كان مقهى لطيفًا جدًا، لم ألاحظه في البداية لأنه يشبه مستودعًا فحسب. لكن الكورتادو والدانش لذيذان جدًا. قام إيفان بعمل رائع في تحضير قهوتي، بالضبط كما أحبها.",
   "reviews.r2.text": "يا له من فريق لطيف. عاملوني حرفيًا وكأنني أعرفهم من قبل. اقتربت من باب المقهى ففتح لي الموظفون موقف السيارات المخصص للمقهى.",
