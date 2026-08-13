@@ -33,6 +33,36 @@
     U+2018-201A, U+201C-201E, U+2022, U+2039-203A, U+2044;
 }
 
+/* Arabic set. Chosen to keep each font's original role and personality:
+   Baloo Bhaijaan 2 is the Latin Baloo super-family's Arabic sibling, so it
+   carries the same bubbly roundness as Bagel Fat One into the wordmark.
+   Cairo is a clean, widely-used UI face for body text. Aref Ruqaa is a
+   Ruqaa-script face — the closest match to Caveat's handwritten margin notes. */
+@font-face {
+  font-family: "Baloo Bhaijaan 2";
+  font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url("../fonts/baloo-bhaijaan2-arabic-400-800.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url("../fonts/cairo-arabic-400-800.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Aref Ruqaa";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/aref-ruqaa-arabic-400.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+@font-face {
+  font-family: "Aref Ruqaa";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/aref-ruqaa-arabic-700.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC, U+200C-200E;
+}
+
 :root {
   --teal: #008371;
   --teal-deep: #00584C;
@@ -158,6 +188,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .nav__logo:hover { transform: rotate(-3deg); }
 .nav__logo .wordmark__the { display: none; }
 
+/* Groups the language switcher, the hamburger, and the link list so the flag
+   stays visible in the bar at every width instead of being buried inside the
+   mobile drawer with everything else. */
+.nav__right { display: flex; align-items: center; gap: 18px; }
+
 .nav__links { display: flex; align-items: center; gap: 32px; }
 .nav__links a { font-size: 0.94rem; font-weight: 500; position: relative; padding: 4px 0; }
 .nav__links a::after {
@@ -205,6 +240,98 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav__links a::after { left: 50%; width: 0; }
   .nav__links .nav__cta { margin-top: 18px; padding: 14px 34px; font-size: 1.1rem; }
 }
+
+/* ==========================================================================
+   Language switcher — flag button + dropdown, lives in .nav__right so it's
+   visible in the bar at every width, never buried inside the mobile drawer.
+   ========================================================================== */
+
+.lang { position: relative; }
+
+.lang__btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 11px; border-radius: 999px;
+  border: 1px solid currentColor; opacity: 0.9;
+  transition: opacity 200ms ease, transform 200ms var(--ease-out);
+}
+.lang__btn:hover { opacity: 1; transform: translateY(-1px); }
+.lang__flag { width: 20px; height: 14px; border-radius: 3px; flex: none; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+.lang__code { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.03em; }
+.lang__chevron { width: 9px; height: 9px; transition: transform 220ms var(--ease-out); }
+.lang.is-open .lang__chevron { transform: rotate(180deg); }
+
+/* Only the flag matching the active language shows — driven by html[lang],
+   not JS-toggled classes, so it can never fall out of sync with the state
+   that actually controls the translated text. */
+html:not([lang="ar"]) .lang__btn .lang__flag--ae { display: none; }
+html[lang="ar"] .lang__btn .lang__flag--gb { display: none; }
+
+.lang__menu {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 120;
+  min-width: 168px; padding: 6px;
+  border-radius: 16px;
+  background: var(--paper); color: var(--ink);
+  box-shadow: 0 18px 40px -14px rgba(12, 42, 34, 0.35), 0 0 0 1px rgba(0,131,113,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-6px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), visibility 200ms;
+}
+[dir="rtl"] .lang__menu { right: auto; left: 0; transform-origin: top left; }
+.lang.is-open .lang__menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+.lang__opt {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 10px 12px; border-radius: 11px;
+  font-size: 0.92rem; font-weight: 600; text-align: start;
+  transition: background 160ms ease;
+}
+.lang__opt:hover { background: var(--teal-wash); }
+.lang__opt[aria-current="true"] { background: var(--blush-wash); color: var(--blush-ink); font-weight: 800; }
+.lang__opt .lang__flag { width: 24px; height: 17px; }
+
+/* Bar is dark before scroll on the home hero — invert the pill to match the
+   adaptive nav ink instead of rendering an invisible border. */
+.nav--adaptive:not(.is-scrolled) .lang__btn { border-color: rgba(12, 42, 34, 0.4); }
+.nav.is-menu-open .lang__btn,
+.nav--solid .lang__btn,
+.nav.is-scrolled .lang__btn { border-color: rgba(255, 249, 243, 0.5); }
+.nav--adaptive:not(.is-scrolled):not(.is-menu-open) .lang__menu { color: var(--ink); }
+
+@media (max-width: 900px) {
+  .lang__btn { padding: 8px 12px; }
+}
+
+/* ==========================================================================
+   Arabic — self-hosted font swap + the handful of physical-property fixes
+   flex/grid don't already flip for free under dir="rtl".
+   ========================================================================== */
+
+html[lang="ar"] {
+  --font-sans: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-hand: "Aref Ruqaa", "Traditional Arabic", "Segoe UI", cursive;
+}
+/* The wordmark is the brand's actual logotype — it stays set in Bagel Fat One
+   and stays in English in both languages, the way a real shopfront sign would. */
+html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
+
+[dir="rtl"] body { text-align: right; }
+[dir="rtl"] .nav__links a::after { transform-origin: left; }
+[dir="rtl"] .nav__links a:hover::after,
+[dir="rtl"] .nav__links a[aria-current="page"]::after { transform-origin: right; }
+[dir="rtl"] .blend:hover { box-shadow: 5px 6px 0 var(--blush); }
+[dir="rtl"] .spot::before { right: auto; left: -60px; }
+[dir="rtl"] .hero__scroll i { background: linear-gradient(180deg, var(--ink-soft), transparent); }
+[dir="rtl"] .menu-note { transform: rotate(0.7deg); }
+[dir="rtl"] .mgroup__head { border-bottom-color: var(--blush); }
+/* "→" as a bare character doesn't reverse with dir — mirror it so it still
+   reads as "forward" rather than pointing back at the text it follows. */
+[dir="rtl"] .find__arrow, [dir="rtl"] .spot__link span[aria-hidden] { display: inline-block; transform: scaleX(-1); }
+
+/* Caveat's italic slant reads as a design flourish in Latin; Aref Ruqaa is
+   already a script face, so the rotation is the only accent it needs. */
+[dir="rtl"] .scribble,
+[dir="rtl"] .drink__cap,
+[dir="rtl"] .mgroup__sub { font-weight: 600; }
 
 /* ==========================================================================
    Layout primitives

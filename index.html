@@ -41,11 +41,12 @@
   <link rel="preload" href="fonts/figtree-latin-300-900.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="images/shop-room.webp" as="image" fetchpriority="high">
   <link rel="preload" href="fonts/caveat-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/cairo-arabic-400-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main"><span data-i18n="a11y.skipLink">Skip to content</span></a>
 
 <header>
   <nav class="nav nav--adaptive" aria-label="Main">
@@ -53,14 +54,56 @@
       <span class="wordmark__the" aria-hidden="true">The</span>
       <span class="wordmark__name">Coffee Bar</span>
     </a>
-    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav__links" id="nav-links">
-      <a href="#matcha">Matcha</a>
-      <a href="#coffee">Coffee</a>
-      <a href="#find-us">Find us</a>
-      <a class="nav__cta" href="menu.html">Full menu</a>
+    <div class="nav__right">
+      <div class="lang" data-lang-switch>
+        <button class="lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+          <svg class="lang__flag lang__flag--gb" viewBox="0 0 60 40" aria-hidden="true">
+            <rect width="60" height="40" fill="#00247d"/>
+            <path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="8"/>
+            <path d="M0 0 60 40M60 0 0 40" stroke="#cf142b" stroke-width="3"/>
+            <path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/>
+            <path d="M30 0V40M0 20H60" stroke="#cf142b" stroke-width="7"/>
+          </svg>
+          <svg class="lang__flag lang__flag--ae" viewBox="0 0 60 40" aria-hidden="true">
+            <rect width="60" height="40" fill="#fff"/>
+            <rect width="60" height="13.33" fill="#00732f"/>
+            <rect y="26.67" width="60" height="13.33" fill="#000"/>
+            <rect width="15" height="40" fill="#ce1126"/>
+          </svg>
+          <span class="lang__code">EN</span>
+          <svg class="lang__chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="lang__menu" role="menu">
+          <button type="button" class="lang__opt" data-lang="en" role="menuitem" aria-current="true">
+            <svg class="lang__flag lang__flag--gb" viewBox="0 0 60 40" aria-hidden="true">
+              <rect width="60" height="40" fill="#00247d"/>
+              <path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="8"/>
+              <path d="M0 0 60 40M60 0 0 40" stroke="#cf142b" stroke-width="3"/>
+              <path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/>
+              <path d="M30 0V40M0 20H60" stroke="#cf142b" stroke-width="7"/>
+            </svg>
+            <span>English</span>
+          </button>
+          <button type="button" class="lang__opt" data-lang="ar" role="menuitem" aria-current="false">
+            <svg class="lang__flag lang__flag--ae" viewBox="0 0 60 40" aria-hidden="true">
+              <rect width="60" height="40" fill="#fff"/>
+              <rect width="60" height="13.33" fill="#00732f"/>
+              <rect y="26.67" width="60" height="13.33" fill="#000"/>
+              <rect width="15" height="40" fill="#ce1126"/>
+            </svg>
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav__links" id="nav-links">
+        <a href="#matcha" data-i18n="nav.matcha">Matcha</a>
+        <a href="#coffee" data-i18n="nav.coffee">Coffee</a>
+        <a href="#find-us" data-i18n="nav.findUs">Find us</a>
+        <a class="nav__cta" href="menu.html" data-i18n="nav.fullMenu">Full menu</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -78,12 +121,12 @@
             <span class="wordmark__name" aria-hidden="true">Coffee Bar</span>
             <span class="visually-hidden">The Coffee Bar</span>
           </h1>
-          <p class="hero__sign-sub" aria-hidden="true">Specialty Coffee &nbsp;·&nbsp; Premium Matcha</p>
+          <p class="hero__sign-sub" aria-hidden="true" data-i18n="hero.tagline">Specialty Coffee &nbsp;·&nbsp; Premium Matcha</p>
         </div>
 
-        <p class="scribble hero__scribble">you'll think you're at the wrong address&nbsp;↓</p>
+        <p class="scribble hero__scribble" data-i18n="hero.scribble">you'll think you're at the wrong address&nbsp;↓</p>
 
-        <p class="hero__sub">
+        <p class="hero__sub" data-i18n="hero.sub">
           We're the green door in a row of warehouses in Al Quoz. Walk in anyway. There's
           ceremonial matcha, our own roast, and a plant wall.
         </p>
@@ -91,20 +134,20 @@
         <div class="hero__facts">
           <span class="hero__fact hero__fact--star">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.3 1.3-6.6L2.5 9.1l6.6-.8z"/></svg>
-            4.6 from 85 Google reviews
+            <span data-i18n="hero.fact.rating">4.6 from 85 Google reviews</span>
           </span>
-          <span class="hero__fact">🌱 Plant milk always free</span>
-          <span class="hero__fact">Women-owned</span>
+          <span class="hero__fact">🌱 <span data-i18n="hero.fact.milk">Plant milk always free</span></span>
+          <span class="hero__fact" data-i18n="hero.fact.women">Women-owned</span>
         </div>
 
         <div class="hero__actions">
-          <a class="btn btn--primary" href="menu.html">See the menu</a>
-          <a class="btn btn--ghost" href="#find-us">How to find us</a>
+          <a class="btn btn--primary" href="menu.html" data-i18n="hero.cta.menu">See the menu</a>
+          <a class="btn btn--ghost" href="#find-us" data-i18n="hero.cta.find">How to find us</a>
         </div>
       </div>
 
       <div class="hero__shots">
-        <span class="hero__stamp" aria-hidden="true">free oat<br>almond<br>soya</span>
+        <span class="hero__stamp" aria-hidden="true"><span data-i18n="hero.stamp.l1">free oat</span><br><span data-i18n="hero.stamp.l2">almond</span><br><span data-i18n="hero.stamp.l3">soya</span></span>
 
         <figure class="snap snap--big">
           <picture>
@@ -135,25 +178,25 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track">
       <div class="ticker__group">
-        <span><b>Oat</b></span><i>·</i><span><b>Almond</b></span><i>·</i><span><b>Soya</b></span><i>·</i><span><b>Coconut</b></span><i>·</i>
-        <span>Never a surcharge</span><i>·</i><span>Ceremonial grade matcha</span><i>·</i><span>Roasted under our own label</span><i>·</i>
-        <span>Closed Sundays</span><i>·</i>
+        <span><b data-i18n="ticker.oat">Oat</b></span><i>·</i><span><b data-i18n="ticker.almond">Almond</b></span><i>·</i><span><b data-i18n="ticker.soya">Soya</b></span><i>·</i><span><b data-i18n="ticker.coconut">Coconut</b></span><i>·</i>
+        <span data-i18n="ticker.surcharge">Never a surcharge</span><i>·</i><span data-i18n="ticker.ceremonial">Ceremonial grade matcha</span><i>·</i><span data-i18n="ticker.roasted">Roasted under our own label</span><i>·</i>
+        <span data-i18n="ticker.closed">Closed Sundays</span><i>·</i>
       </div>
       <div class="ticker__group">
-        <span><b>Oat</b></span><i>·</i><span><b>Almond</b></span><i>·</i><span><b>Soya</b></span><i>·</i><span><b>Coconut</b></span><i>·</i>
-        <span>Never a surcharge</span><i>·</i><span>Ceremonial grade matcha</span><i>·</i><span>Roasted under our own label</span><i>·</i>
-        <span>Closed Sundays</span><i>·</i>
+        <span><b data-i18n="ticker.oat">Oat</b></span><i>·</i><span><b data-i18n="ticker.almond">Almond</b></span><i>·</i><span><b data-i18n="ticker.soya">Soya</b></span><i>·</i><span><b data-i18n="ticker.coconut">Coconut</b></span><i>·</i>
+        <span data-i18n="ticker.surcharge">Never a surcharge</span><i>·</i><span data-i18n="ticker.ceremonial">Ceremonial grade matcha</span><i>·</i><span data-i18n="ticker.roasted">Roasted under our own label</span><i>·</i>
+        <span data-i18n="ticker.closed">Closed Sundays</span><i>·</i>
       </div>
     </div>
   </div>
-  <p class="visually-hidden">Oat, almond, soya and coconut milk are included in every drink at no extra cost.</p>
+  <p class="visually-hidden" data-i18n="ticker.a11y">Oat, almond, soya and coconut milk are included in every drink at no extra cost.</p>
 
   <!-- ==================== MATCHA ==================== -->
   <section class="section section--wash" id="matcha">
     <div class="section__inner">
-      <p class="eyebrow reveal">Premium matcha</p>
-      <h2 class="h2 reveal" style="--delay:60ms">Matcha isn't the side order here.</h2>
-      <p class="lede reveal" style="--delay:110ms">
+      <p class="eyebrow reveal" data-i18n="matcha.eyebrow">Premium matcha</p>
+      <h2 class="h2 reveal" style="--delay:60ms" data-i18n="matcha.h2">Matcha isn't the side order here.</h2>
+      <p class="lede reveal" style="--delay:110ms" data-i18n="matcha.lede">
         Everything is whisked from Kanso ceremonial grade, grown in the shade in Kagoshima. Pick
         your milk, we'll pour it in. Same price either way.
       </p>
@@ -167,7 +210,7 @@
               <img src="images/ube.jpg" alt="Ube matcha latte in a green ceramic cup beside an iced ube latte on a herringbone wooden table" width="900" height="823" loading="lazy" decoding="async">
             </picture>
           </div>
-          <figcaption class="drink__cap">Ube season. Comes and goes — ask if it's on.</figcaption>
+          <figcaption class="drink__cap" data-i18n="matcha.cap1">Ube season. Comes and goes — ask if it's on.</figcaption>
         </figure>
 
         <figure class="drink reveal" style="--delay:80ms">
@@ -177,7 +220,7 @@
               <img src="images/sign-latte.jpg" alt="A latte on a wooden tray in front of the plant wall, under The Coffee Bar's lit sign" width="512" height="640" loading="lazy" decoding="async">
             </picture>
           </div>
-          <figcaption class="drink__cap">Under the sign, by the plant wall.</figcaption>
+          <figcaption class="drink__cap" data-i18n="matcha.cap2">Under the sign, by the plant wall.</figcaption>
         </figure>
 
         <figure class="drink reveal" style="--delay:160ms">
@@ -187,7 +230,7 @@
               <img src="images/iced-latte.jpg" alt="A layered iced hojicha latte in a double-walled glass on a wooden board" width="788" height="1400" loading="lazy" decoding="async">
             </picture>
           </div>
-          <figcaption class="drink__cap">Hojicha under a chocolate cloud — 25</figcaption>
+          <figcaption class="drink__cap" data-i18n="matcha.cap3">Hojicha under a chocolate cloud — 25</figcaption>
         </figure>
 
         <figure class="drink reveal" style="--delay:240ms">
@@ -197,14 +240,14 @@
               <img src="images/drinks-lineup.jpg" alt="A lineup of iced drinks in double-walled glasses on a marble counter beside a bamboo matcha whisk" width="900" height="777" loading="lazy" decoding="async">
             </picture>
           </div>
-          <figcaption class="drink__cap">The iced half of the board, roughly.</figcaption>
+          <figcaption class="drink__cap" data-i18n="matcha.cap4">The iced half of the board, roughly.</figcaption>
         </figure>
 
       </div>
 
       <div class="hero__actions">
-        <a class="btn btn--primary" href="menu.html#matcha">All fifteen of them</a>
-        <a class="btn btn--ghost" href="menu.html#retail">Take a tin home</a>
+        <a class="btn btn--primary" href="menu.html#matcha" data-i18n="matcha.cta1">All fifteen of them</a>
+        <a class="btn btn--ghost" href="menu.html#retail" data-i18n="matcha.cta2">Take a tin home</a>
       </div>
     </div>
   </section>
@@ -228,9 +271,9 @@
       </div>
 
       <div>
-        <p class="eyebrow reveal">The Smara Collection</p>
-        <h2 class="h2 reveal" style="--delay:60ms">We roast it ourselves, so we can't blame anyone else.</h2>
-        <p class="lede reveal" style="--delay:110ms">
+        <p class="eyebrow reveal" data-i18n="coffee.eyebrow">The Smara Collection</p>
+        <h2 class="h2 reveal" style="--delay:60ms" data-i18n="coffee.h2">We roast it ourselves, so we can't blame anyone else.</h2>
+        <p class="lede reveal" style="--delay:110ms" data-i18n="coffee.lede">
           Two roasts under our own label. One's a blend, one isn't. Pulled as espresso all day,
           or brewed slowly on V60 and Chemex if you've got ten minutes.
         </p>
@@ -243,10 +286,10 @@
               <circle cx="17" cy="24" r="7" fill="#FAD6D5"/>
             </svg>
             <div>
-              <h3 class="blend__name">Laikipia Blend</h3>
-              <p class="blend__notes">Ethiopia and Brazil. Fruit and chocolate, smooth with a punch behind it.</p>
+              <h3 class="blend__name" data-i18n="coffee.blend1.name">Laikipia Blend</h3>
+              <p class="blend__notes" data-i18n="coffee.blend1.notes">Ethiopia and Brazil. Fruit and chocolate, smooth with a punch behind it.</p>
             </div>
-            <p class="blend__price">50<span style="font-size:.72rem;font-family:var(--font-sans);color:var(--ink-soft)"> / 250g</span></p>
+            <p class="blend__price">50<span style="font-size:.72rem;font-family:var(--font-sans);color:var(--ink-soft)"> <span data-i18n="unit.per250g">/ 250g</span></span></p>
           </article>
 
           <article class="blend reveal" style="--delay:140ms">
@@ -256,14 +299,14 @@
               <circle cx="17" cy="24" r="7" fill="#5CAEA0"/>
             </svg>
             <div>
-              <h3 class="blend__name">Lewa Single Origin</h3>
-              <p class="blend__notes">Ethiopia on its own. Citrus, stone fruit, flowers.</p>
+              <h3 class="blend__name" data-i18n="coffee.blend2.name">Lewa Single Origin</h3>
+              <p class="blend__notes" data-i18n="coffee.blend2.notes">Ethiopia on its own. Citrus, stone fruit, flowers.</p>
             </div>
-            <p class="blend__price">61<span style="font-size:.72rem;font-family:var(--font-sans);color:var(--ink-soft)"> / 250g</span></p>
+            <p class="blend__price">61<span style="font-size:.72rem;font-family:var(--font-sans);color:var(--ink-soft)"> <span data-i18n="unit.per250g">/ 250g</span></span></p>
           </article>
         </div>
 
-        <p class="scribble reveal" style="--delay:200ms;margin-top:22px;transform:rotate(-1.5deg)">
+        <p class="scribble reveal" style="--delay:200ms;margin-top:22px;transform:rotate(-1.5deg)" data-i18n="coffee.scribble">
           the whole retail wall is at wholesale price — ask at the bar
         </p>
       </div>
@@ -282,15 +325,15 @@
         </figure>
       </div>
       <div>
-        <p class="eyebrow reveal">The retail wall</p>
-        <h2 class="h2 reveal" style="--delay:60ms">Drink it here. Then buy the bag it came from.</h2>
-        <p class="lede reveal" style="--delay:110ms">
+        <p class="eyebrow reveal" data-i18n="retail.eyebrow">The retail wall</p>
+        <h2 class="h2 reveal" style="--delay:60ms" data-i18n="retail.h2">Drink it here. Then buy the bag it came from.</h2>
+        <p class="lede reveal" style="--delay:110ms" data-i18n="retail.lede">
           Every ingredient on the menu is stacked on the wall behind you at wholesale price. The
           Kagoshima matcha, the hojicha, the beans, the ceramic bowl and bamboo whisk to do it
           properly at home.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--blush" href="menu.html#retail">What's on the wall</a>
+          <a class="btn btn--blush" href="menu.html#retail" data-i18n="retail.cta">What's on the wall</a>
         </div>
       </div>
     </div>
@@ -299,29 +342,29 @@
   <!-- ==================== REVIEWS ==================== -->
   <section class="section section--teal">
     <div class="section__inner">
-      <p class="eyebrow reveal">From Google</p>
-      <h2 class="h2 reveal" style="--delay:60ms">4.6 stars, 85 reviews, one recurring theme.</h2>
+      <p class="eyebrow reveal" data-i18n="reviews.eyebrow">From Google</p>
+      <h2 class="h2 reveal" style="--delay:60ms" data-i18n="reviews.h2">4.6 stars, 85 reviews, one recurring theme.</h2>
 
       <div class="reviews">
         <blockquote class="review reveal">
           <span class="review__mark" aria-hidden="true">“</span>
           <span class="review__stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
-          <p class="review__text">It was a really nice cafe, didn't see it at first as it just looks like a warehouse. But the cortado and the Danish is very good. Yvan did a really great job making my coffee, just the way I like it.</p>
-          <footer class="review__by"><cite>Pamela Bridget Ramirez</cite> · Local Guide</footer>
+          <p class="review__text" data-i18n="reviews.r1.text">It was a really nice cafe, didn't see it at first as it just looks like a warehouse. But the cortado and the Danish is very good. Yvan did a really great job making my coffee, just the way I like it.</p>
+          <footer class="review__by"><cite>Pamela Bridget Ramirez</cite> · <span data-i18n="reviews.localGuide">Local Guide</span></footer>
         </blockquote>
 
         <blockquote class="review reveal" style="--delay:110ms">
           <span class="review__mark" aria-hidden="true">“</span>
           <span class="review__stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
-          <p class="review__text">What a cute team. They literally treated me like I know them before. I approached the cafe door and the staff opened the cafe-reserved parking for me.</p>
-          <footer class="review__by"><cite>Shaikha Al Humiri</cite> · Local Guide</footer>
+          <p class="review__text" data-i18n="reviews.r2.text">What a cute team. They literally treated me like I know them before. I approached the cafe door and the staff opened the cafe-reserved parking for me.</p>
+          <footer class="review__by"><cite>Shaikha Al Humiri</cite> · <span data-i18n="reviews.localGuide">Local Guide</span></footer>
         </blockquote>
 
         <blockquote class="review reveal" style="--delay:220ms">
           <span class="review__mark" aria-hidden="true">“</span>
           <span class="review__stars" role="img" aria-label="Most mentioned in reviews">★★★★★</span>
-          <p class="review__text">What people bring up most, in their own words: the pistachio latte, the specialty coffees, welcoming staff, and how quiet it is.</p>
-          <footer class="review__by"><cite>Review highlights</cite> · Google</footer>
+          <p class="review__text" data-i18n="reviews.r3.text">What people bring up most, in their own words: the pistachio latte, the specialty coffees, welcoming staff, and how quiet it is.</p>
+          <footer class="review__by"><cite data-i18n="reviews.r3.by">Review highlights</cite> · Google</footer>
         </blockquote>
       </div>
     </div>
@@ -330,54 +373,54 @@
   <!-- ==================== MENU PREVIEW ==================== -->
   <section class="section section--paper">
     <div class="section__inner">
-      <p class="eyebrow reveal">On the bar</p>
-      <h2 class="h2 reveal" style="--delay:60ms">A short look at a long menu.</h2>
-      <p class="lede reveal" style="--delay:110ms">A few regulars from each corner of the board. Prices in AED.</p>
+      <p class="eyebrow reveal" data-i18n="mpreview.eyebrow">On the bar</p>
+      <h2 class="h2 reveal" style="--delay:60ms" data-i18n="mpreview.h2">A short look at a long menu.</h2>
+      <p class="lede reveal" style="--delay:110ms" data-i18n="mpreview.lede">A few regulars from each corner of the board. Prices in AED.</p>
 
       <div class="mpreview__grid">
         <div class="mcat reveal">
-          <h3 class="mcat__title">Classic coffee</h3>
+          <h3 class="mcat__title" data-i18n="mpreview.cat1.title">Classic coffee</h3>
           <ul class="mcat__items">
-            <li><b>Espresso</b><span>19</span></li>
-            <li><b>Americano</b><span>20</span></li>
-            <li><b>Flat White</b><span>23</span></li>
-            <li><b>Spanish Latte</b><span>24</span></li>
-            <li><b>Cortado</b><span>22</span></li>
+            <li><b data-i18n="m.hot.i1.name">Espresso</b><span>19</span></li>
+            <li><b data-i18n="m.hot.i3.name">Americano</b><span>20</span></li>
+            <li><b data-i18n="m.hot.i7.name">Flat White</b><span>23</span></li>
+            <li><b data-i18n="m.hot.i11.name">Spanish Latte</b><span>24</span></li>
+            <li><b data-i18n="m.hot.i5.name">Cortado</b><span>22</span></li>
           </ul>
         </div>
         <div class="mcat reveal" style="--delay:90ms">
-          <h3 class="mcat__title">Hand filtered</h3>
+          <h3 class="mcat__title" data-i18n="mpreview.cat2.title">Hand filtered</h3>
           <ul class="mcat__items">
-            <li><b>Hot V60</b><span>30</span></li>
-            <li><b>Iced V60</b><span>30</span></li>
-            <li><b>Hot Chemex</b><span>30</span></li>
-            <li><b>Iced Chemex</b><span>30</span></li>
+            <li><b data-i18n="mpreview.hotV60">Hot V60</b><span>30</span></li>
+            <li><b data-i18n="mpreview.icedV60">Iced V60</b><span>30</span></li>
+            <li><b data-i18n="mpreview.hotChemex">Hot Chemex</b><span>30</span></li>
+            <li><b data-i18n="mpreview.icedChemex">Iced Chemex</b><span>30</span></li>
           </ul>
         </div>
         <div class="mcat reveal" style="--delay:180ms">
-          <h3 class="mcat__title">Protein shakes</h3>
+          <h3 class="mcat__title" data-i18n="mpreview.cat3.title">Protein shakes</h3>
           <ul class="mcat__items">
-            <li><b>Peanut Butter Cup</b><span>35</span></li>
-            <li><b>Bounty Bar</b><span>35</span></li>
-            <li><b>Banana Pudding</b><span>35</span></li>
-            <li><b>Berry Good</b><span>34</span></li>
-            <li><b>Ms. Skinny</b><span>32</span></li>
+            <li><b data-i18n="m.protein.i4.name">Peanut Butter Cup</b><span>35</span></li>
+            <li><b data-i18n="m.protein.i5.name">Bounty Bar</b><span>35</span></li>
+            <li><b data-i18n="m.protein.i6.name">Banana Pudding</b><span>35</span></li>
+            <li><b data-i18n="m.protein.i2.name">Berry Good</b><span>34</span></li>
+            <li><b data-i18n="m.protein.i1.name">Ms. Skinny</b><span>32</span></li>
           </ul>
         </div>
         <div class="mcat reveal" style="--delay:270ms">
-          <h3 class="mcat__title">Kitchen &amp; pastry</h3>
+          <h3 class="mcat__title" data-i18n="mpreview.cat4.title">Kitchen &amp; pastry</h3>
           <ul class="mcat__items">
-            <li><b>Açaí Bowl</b><span>42</span></li>
-            <li><b>Almond Croissant</b><span>22</span></li>
-            <li><b>Pesto &amp; 2 Cheese</b><span>28</span></li>
-            <li><b>Carrot Cake</b><span>25</span></li>
-            <li><b>Opera Cake</b><span>25</span></li>
+            <li><b data-i18n="m.food.i1.name">Açaí Bowl</b><span>42</span></li>
+            <li><b data-i18n="m.food.i3.name">Almond Croissant</b><span>22</span></li>
+            <li><b data-i18n="mpreview.pesto2cheese">Pesto &amp; 2 Cheese</b><span>28</span></li>
+            <li><b data-i18n="m.food.i9.name">Carrot Cake</b><span>25</span></li>
+            <li><b data-i18n="m.food.i11.name">Opera Cake</b><span>25</span></li>
           </ul>
         </div>
       </div>
 
       <div class="hero__actions">
-        <a class="btn btn--primary" href="menu.html">Read the whole thing</a>
+        <a class="btn btn--primary" href="menu.html" data-i18n="mpreview.cta">Read the whole thing</a>
       </div>
     </div>
   </section>
@@ -385,8 +428,8 @@
   <!-- ==================== FIND US ==================== -->
   <section class="section section--wash" id="find-us">
     <div class="section__inner">
-      <p class="eyebrow reveal">Find us</p>
-      <h2 class="h2 reveal" style="--delay:60ms">Two rooms, two very different moods.</h2>
+      <p class="eyebrow reveal" data-i18n="find.eyebrow">Find us</p>
+      <h2 class="h2 reveal" style="--delay:60ms" data-i18n="find.h2">Two rooms, two very different moods.</h2>
 
       <div class="spots">
 
@@ -398,20 +441,20 @@
             </picture>
           </div>
           <div class="spot__body">
-            <span class="spot__tag">Al Quoz</span>
-            <h3 class="spot__name">The warehouse one</h3>
-            <p class="spot__desc">
+            <span class="spot__tag" data-i18n="find.alquoz.tag">Al Quoz</span>
+            <h3 class="spot__name" data-i18n="find.alquoz.name">The warehouse one</h3>
+            <p class="spot__desc" data-i18n="find.alquoz.desc">
               A double-height room behind an industrial door, with a green tiled bar, a plant wall
               and the whole TGC&amp;CO shop stacked around you. There's reserved parking, and someone
               will come out and open it for you.
             </p>
             <div class="spot__meta">
-              <p><b>Al Quoz Industrial First</b>, Dubai</p>
-              <p>Mon–Fri 8:30–6 · Sat 9–1:30 · <b>Sun closed</b></p>
-              <p>Dine in · Drive-through · Delivery</p>
+              <p><b data-i18n="find.alquoz.addr1">Al Quoz Industrial First</b><span data-i18n="find.alquoz.addr2">, Dubai</span></p>
+              <p><span data-i18n="find.alquoz.hours">Mon–Fri 8:30–6 · Sat 9–1:30 ·</span> <b data-i18n="find.alquoz.sunClosed">Sun closed</b></p>
+              <p data-i18n="find.alquoz.services">Dine in · Drive-through · Delivery</p>
             </div>
             <a class="spot__link" href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener">
-              Open in Maps <span aria-hidden="true">→</span>
+              <span data-i18n="find.alquoz.link">Open in Maps</span> <span aria-hidden="true" class="find__arrow">→</span>
             </a>
           </div>
         </article>
@@ -424,19 +467,19 @@
             </picture>
           </div>
           <div class="spot__body">
-            <span class="spot__tag">Dubai Marina</span>
-            <h3 class="spot__name">The counter at Dryp</h3>
-            <p class="spot__desc">
+            <span class="spot__tag" data-i18n="find.marina.tag">Dubai Marina</span>
+            <h3 class="spot__name" data-i18n="find.marina.name">The counter at Dryp</h3>
+            <p class="spot__desc" data-i18n="find.marina.desc">
               Our bar inside Dryp in the Marina. Brighter, quicker, built for people walking past.
               Same matcha, same roast, same free plant milk.
             </p>
             <div class="spot__meta">
-              <p><b>Dryp</b>, Dubai Marina</p>
-              <p>Walk-in · Takeaway</p>
-              <p>Menu varies a little from Al Quoz</p>
+              <p><b>Dryp</b><span data-i18n="find.marina.addr2">, Dubai Marina</span></p>
+              <p data-i18n="find.marina.services">Walk-in · Takeaway</p>
+              <p data-i18n="find.marina.note">Menu varies a little from Al Quoz</p>
             </div>
             <a class="spot__link" href="https://www.instagram.com/thecoffeebar___/" target="_blank" rel="noopener">
-              See it on Instagram <span aria-hidden="true">→</span>
+              <span data-i18n="find.marina.link">See it on Instagram</span> <span aria-hidden="true" class="find__arrow">→</span>
             </a>
           </div>
         </article>
@@ -445,18 +488,18 @@
 
       <div class="hours reveal">
         <div>
-          <p class="eyebrow" style="color:var(--blush)">Al Quoz hours</p>
+          <p class="eyebrow" style="color:var(--blush)" data-i18n="hours.eyebrow">Al Quoz hours</p>
           <ul class="hours__list">
-            <li><b>Monday–Friday</b><span>8:30 am – 6:00 pm</span></li>
-            <li><b>Saturday</b><span>9:00 am – 1:30 pm</span></li>
-            <li><b>Sunday</b><span>Closed</span></li>
+            <li><b data-i18n="hours.weekday">Monday–Friday</b><span data-i18n="hours.weekdayTime">8:30 am – 6:00 pm</span></li>
+            <li><b data-i18n="hours.saturday">Saturday</b><span data-i18n="hours.saturdayTime">9:00 am – 1:30 pm</span></li>
+            <li><b data-i18n="hours.sunday">Sunday</b><span data-i18n="hours.closed">Closed</span></li>
           </ul>
           <p style="margin-top:18px;font-size:.94rem;color:rgba(255,249,243,.8)">
             <a href="tel:+971526425040" style="display:inline-block;border-bottom:2px solid var(--blush);padding:3px 0 4px">+971 52 642 5040</a>
-            &nbsp;·&nbsp; Plus code 46PH+3R
+            &nbsp;·&nbsp; <span data-i18n="hours.plusCode">Plus code 46PH+3R</span>
           </p>
         </div>
-        <p class="hours__note">we're a weekday sort of place</p>
+        <p class="hours__note" data-i18n="hours.note">we're a weekday sort of place</p>
       </div>
     </div>
   </section>
@@ -470,33 +513,34 @@
         <span class="wordmark__the" aria-hidden="true">The</span>
         <span class="wordmark__name">Coffee Bar</span>
       </p>
-      <p class="footer__tag">Specialty coffee and premium matcha by The Goods Collective &amp; Co. Women-owned, Al Quoz, Dubai.</p>
+      <p class="footer__tag" data-i18n="home.footer.tag">Specialty coffee and premium matcha by The Goods Collective &amp; Co. Women-owned, Al Quoz, Dubai.</p>
     </div>
     <div>
-      <h2 class="footer__h">Explore</h2>
+      <h2 class="footer__h" data-i18n="home.footer.explore">Explore</h2>
       <ul class="footer__list">
-        <li><a href="menu.html">Full menu</a></li>
-        <li><a href="menu.html#matcha">Matcha &amp; hojicha</a></li>
-        <li><a href="menu.html#retail">Take-home collection</a></li>
-        <li><a href="#find-us">Find us</a></li>
+        <li><a href="menu.html" data-i18n="nav.fullMenu">Full menu</a></li>
+        <li><a href="menu.html#matcha" data-i18n="home.footer.matchaHojicha">Matcha &amp; hojicha</a></li>
+        <li><a href="menu.html#retail" data-i18n="menuPage.footer.takeHome">Take-home collection</a></li>
+        <li><a href="#find-us" data-i18n="nav.findUs">Find us</a></li>
       </ul>
     </div>
     <div>
-      <h2 class="footer__h">Say hello</h2>
+      <h2 class="footer__h" data-i18n="home.footer.sayHello">Say hello</h2>
       <ul class="footer__list">
         <li><a href="tel:+971526425040">+971 52 642 5040</a></li>
         <li><a href="https://www.instagram.com/thecoffeebar___/" target="_blank" rel="noopener">@thecoffeebar___</a></li>
         <li><a href="https://www.thegcco.com/" target="_blank" rel="noopener">thegcco.com</a></li>
-        <li><a href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener">Al Quoz on Maps</a></li>
+        <li><a href="https://maps.app.goo.gl/ADb9mDDAnhF79cJw7" target="_blank" rel="noopener" data-i18n="menuPage.footer.mapsLink">Al Quoz on Maps</a></li>
       </ul>
     </div>
   </div>
   <div class="footer__bottom">
-    <span>© The Coffee Bar by TGC&amp;CO · Dubai</span>
-    <span>Oat, almond, soya, coconut. Always on us.</span>
+    <span data-i18n="common.copyright">© The Coffee Bar by TGC&amp;CO · Dubai</span>
+    <span data-i18n="home.footer.bottomNote">Oat, almond, soya, coconut. Always on us.</span>
   </div>
 </footer>
 
+<script src="js/i18n.min.js" defer></script>
 <script src="js/main.min.js" defer></script>
 </body>
 </html>
