@@ -658,11 +658,17 @@ html[lang="ar"] .wordmark { direction: ltr; unicode-bidi: isolate; }
 @media (max-width: 900px) { .drinks { grid-template-columns: repeat(2, 1fr); } }
 
 .drink { position: relative; margin: 0; }
-.drink .snap { aspect-ratio: 4 / 5; margin-bottom: 14px; }
-.drink:nth-child(1) .snap { --rot: -2.2deg; }
-.drink:nth-child(2) .snap { --rot: 1.8deg; }
-.drink:nth-child(3) .snap { --rot: -1.2deg; }
-.drink:nth-child(4) .snap { --rot: 2.6deg; }
+/* Each card uses its photo's real aspect ratio rather than a forced 4:5 —
+   ube.jpg and drinks-lineup.jpg are landscape shots (two cups side by side,
+   a row of glasses), and cropping them to a tall portrait box was cutting a
+   cup out of frame entirely, worst on the narrow single-column phone width.
+   Mixed shapes also read as more candid against this site's taped-snapshot
+   styling than four uniform crops would. */
+.drink .snap { margin-bottom: 14px; }
+.drink:nth-child(1) .snap { --rot: -2.2deg; aspect-ratio: 512 / 448; }
+.drink:nth-child(2) .snap { --rot: 1.8deg; aspect-ratio: 4 / 5; }
+.drink:nth-child(3) .snap { --rot: -1.2deg; aspect-ratio: 788 / 1400; }
+.drink:nth-child(4) .snap { --rot: 2.6deg; aspect-ratio: 4 / 3; }
 
 /* Captions rather than price cards: the photos are of what's actually in the
    cup, so labelling them as specific SKUs would have been a small lie. */
